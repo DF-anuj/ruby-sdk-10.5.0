@@ -6,7 +6,7 @@ module Bandwidth
       end
 
       def method_missing(name, *args, &block)
-        if name[name.size - 1] == '='
+        if try(:name) && name[name.size - 1] == '='
           @data[name[0..-2].to_sym] = args[0]
         else
           @data[name]
